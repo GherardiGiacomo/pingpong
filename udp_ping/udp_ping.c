@@ -39,7 +39,8 @@ double do_ping(size_t msg_size, int msg_no, char message[msg_size], int ping_soc
     /*** write msg_no at the beginning of the message buffer ***/
 /*** TO BE DONE START ***/
 
-    sprintf(message,"%d\n",msg_no);
+	if( sprintf(message,"%d",msg_no) <= 0)
+		fail("Errore nell'inserire msg_no all'inizio del buffer");
 
 /*** TO BE DONE END ***/
 
@@ -49,7 +50,7 @@ double do_ping(size_t msg_size, int msg_no, char message[msg_size], int ping_soc
 /*** TO BE DONE START ***/
 
         if (clock_gettime(CLOCK_TYPE,&send_time) != 0)
-			fail("Errore nella clock_gettime (send_time)");
+			fail("Errore nella clock_gettime (sendtime)");
 			
 /*** TO BE DONE END ***/
 
@@ -81,7 +82,7 @@ double do_ping(size_t msg_size, int msg_no, char message[msg_size], int ping_soc
 	/*** Store the current time in recv_time ***/
 /*** TO BE DONE START ***/
 
-        if(clock_gettime(CLOCK_TYPE,&recv_time)!= 0)
+        if(clock_gettime(CLOCK_TYPE,&recv_time) != 0)
 			fail("Errore nella clock_gettime (recv)");
 
 /*** TO BE DONE END ***/
@@ -153,8 +154,9 @@ int prepare_udp_socket(char *pong_addr, char *pong_port)
 /*** TO BE DONE START ***/
 
     gai_rv= getaddrinfo(pong_addr, pong_port, &gai_hints, &pong_addrinfo);
+
     if (gai_rv < 0)
-        fail("Errore nella getaddrinfo\n");
+        fail("Errore nella getaddrinfo");
 
 /*** TO BE DONE END ***/
 

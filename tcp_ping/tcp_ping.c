@@ -39,27 +39,25 @@ double do_ping(size_t msg_size, int msg_no, char message[msg_size], int tcp_sock
     /*** write msg_no at the beginning of the message buffer ***/
 /*** TO BE DONE START ***/
 
-    if( sprintf(message,"%d\n",msg_no) <=0)
-        fail_errno("Errore nell'inserire msg_no all'inizio del buffer");
+    if( sprintf(message,"%d",msg_no) <= 0)
+        fail("Errore nell'inserire msg_no all'inizio del buffer");
 
 /*** TO BE DONE END ***/
 
     /*** Store the current time in send_time ***/
 /*** TO BE DONE START ***/
 
-   if( clock_gettime(CLOCK_MONOTONIC,&send_time) <0)
-       fail_errno("Errore clock_gettime");
+   if(clock_gettime(CLOCK_TYPE,&send_time) != 0)
+       fail("Errore clock_gettime (send_time)");
 
 /*** TO BE DONE END ***/
 
     /*** Send the message through the socket (blocking)  ***/
 /*** TO BE DONE START ***/
 
-	//  sent_bytes = send(tcp_socket,message,msg_size,0);
-
-	sent_bytes = blocking_write_all(tcp_socket,(const void *) message,msg_size);
+	sent_bytes = send(tcp_socket, message,msg_size,0);
     if(sent_bytes < 0)
-        fail_errno("errore sent bytes");
+        fail("Errore nella send");
 
 /*** TO BE DONE END ***/
 
@@ -73,8 +71,8 @@ double do_ping(size_t msg_size, int msg_no, char message[msg_size], int tcp_sock
     /*** Store the current time in recv_time ***/
 /*** TO BE DONE START ***/
 
-   if( clock_gettime(CLOCK_MONOTONIC,&recv_time) <0)
-       fail_errno("errore clock_gettime");
+   if(clock_gettime(CLOCK_TYPE,&recv_time) != 0)
+		fail("Errore nella clock_gettime (recv)");
 
 /*** TO BE DONE END ***/
 
@@ -115,15 +113,18 @@ int main(int argc, char **argv)
 	memset(&gai_hints, 0, sizeof gai_hints);
 
 /*** TO BE DONE START ***/
+
     gai_hints.ai_family = AF_INET;
     gai_hints.ai_socktype = SOCK_STREAM;
     gai_hints.ai_protocol = IPPROTO_TCP;
-    // gai_hints.ai_flags = 0;
+
 /*** TO BE DONE END ***/
 
     /*** call getaddrinfo() in order to get Pong Server address in binary form ***/
 /*** TO BE DONE START ***/
     gai_rv = getaddrinfo(argv[1], argv[2],&gai_hints,&server_addrinfo);
+	if (gai_rv != 0)
+		fail ("Errore nella getaddrinfo");
 
 /*** TO BE DONE END ***/
 
@@ -135,9 +136,12 @@ int main(int argc, char **argv)
 /*** TO BE DONE START ***/
 
     tcp_socket = socket(server_addrinfo -> ai_family,server_addrinfo -> ai_socktype,server_addrinfo -> ai_protocol);
-	// tcp_socket = socket (gai_hints.ai_family,gai_hints.ai_socktype,gai_hints.ai_protocol); giorgio
-    if (connect(tcp_socket, server_addrinfo -> ai_addr,server_addrinfo -> ai_addrlen) <0)
-        fail_errno("Impossibile stabilire una connessione");
+
+	if (tcp_socket < 0)
+		fail("Errore nella creazione del socket");
+
+    if (connect(tcp_socket, server_addrinfo -> ai_addr,server_addrinfo -> ai_addrlen) < 0)
+        fail("Impossibile stabilire una connessione");
 
 /*** TO BE DONE END ***/
 
@@ -155,7 +159,7 @@ int main(int argc, char **argv)
 /*** TO BE DONE START ***/
 
     if(write(tcp_socket,request, strlen(request)) <0)
-        fail_errno("Errore nel scrivere la richiesta");
+        fail("Errore nella scrittura della richiesta");
 
 /*** TO BE DONE END ***/
 
@@ -166,8 +170,10 @@ int main(int argc, char **argv)
 
     /*** Check if the answer is OK, and fail if it is not ***/
 /*** TO BE DONE START ***/
+
 if(strcmp(answer,"OK\n")!=0)
-    fail_errno("Errore, la risposta non è OK");
+    fail("Errore, la risposta non è OK");
+
 /*** TO BE DONE END ***/
 
     /*** else ***/

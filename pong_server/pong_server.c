@@ -136,6 +136,7 @@ void udp_pong(int dgrams_no, int dgram_sz, int pong_socket)
     
 		if(clock_gettime(CLOCK_TYPE,&time3)!= 0)
 			fail("Errore nella clock_gettime");
+
 /*** TO BE DONE END ***/
 
                 sprintf(buffer,"%ld %ld, %ld %ld\n", (long)time2.tv_sec, time2.tv_nsec,
@@ -179,10 +180,10 @@ int open_udp_socket(int *pong_port)
 	udp_socket = socket(pong_addrinfo->ai_family, pong_addrinfo->ai_socktype, pong_addrinfo->ai_protocol);
 
     if(udp_socket == -1)
-        fail("Impossibile creare il socket");
+        fail("Errore nella creazione del socket");
 		
     bind_rv = bind(udp_socket, pong_addrinfo -> ai_addr, pong_addrinfo ->ai_addrlen);
-    if (bind_rv ==0){
+    if (bind_rv == 0){
         *pong_port = port_number;
         return udp_socket;
     }
@@ -315,10 +316,11 @@ void server_loop(int server_socket) {
             if (errno == EINTR)
                 continue;
             close (server_socket);
-            fail("Impossibile accettare la connessione\n");
+            fail("Impossibile accettare la connessione");
         }
+
         if ((pid = fork ()) < 0)
-            fail("Impossibile fare la fork\n");
+            fail("Impossibile fare la fork");
         if (pid == 0)
             serve_client(request_socket,&client_addr);
 
@@ -355,10 +357,11 @@ int main(int argc, char **argv)
 		if(server_socket == -1)
 			fail("Errore nella creazione del socket");
 			
-    if(bind (server_socket, server_addrinfo -> ai_addr, server_addrinfo -> ai_addrlen) == -1)
-        fail("Errore nella bind");
-    if(listen(server_socket,LISTENBACKLOG) < 0)
-        fail("Errore nella listen");
+		if(bind (server_socket, server_addrinfo -> ai_addr, server_addrinfo -> ai_addrlen) == -1)
+			fail("Errore nella bind");
+			
+		if(listen(server_socket,LISTENBACKLOG) < 0)
+			fail("Errore nella listen");
 
 /*** TO BE DONE END ***/
 

@@ -34,12 +34,6 @@ double timespec_delta2milliseconds(struct timespec *last,
     double seconds = (double) (last -> tv_sec - previous -> tv_sec)*1000;
     double mseconds = (double) (last -> tv_nsec - previous ->tv_nsec)/1000000;
     return seconds+mseconds;
-
-	/*struct timespec difference;
-	difference.tv_sec = last->tv_sec - previous->tv_sec;
-	difference.tv_nsec = last ->tv_nsec - previous->tv_nsec;
-
-	return (difference.tv_sec * pow(10,3) + difference.tv_nsec * pow(10,-6)); */ //soluzione fabio
 	
 /*** TO BE DONE END ***/
 
