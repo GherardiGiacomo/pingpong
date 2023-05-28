@@ -1,0 +1,195 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.3"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "pingpong_lib",
+					"jsonFile" : "directory-pingpong_lib-Debug-328ffe7739aeff7534db.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.3"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "pingpong_lib",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "pong_server",
+					"jsonFile" : "directory-pong_server-Debug-a3a78508771d0ea8da08.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.3"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "pong_server",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "tcp_ping",
+					"jsonFile" : "directory-tcp_ping-Debug-4cb65823711a3e69067e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.3"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 3,
+					"source" : "tcp_ping",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "udp_ping",
+					"jsonFile" : "directory-udp_ping-Debug-a20f11136672347dccf8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.3"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 4,
+					"source" : "udp_ping",
+					"targetIndexes" : 
+					[
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "pingpong_full"
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "pingpong_lib",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "pong_server",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "tcp_ping",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "udp_ping",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "pingpong_lib::@cf03846e4f2d2658dca7",
+					"jsonFile" : "target-pingpong_lib-Debug-a9701dac6c91bdef9bd9.json",
+					"name" : "pingpong_lib",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "pong_server::@819ff4a80cb43eedde8f",
+					"jsonFile" : "target-pong_server-Debug-633d0175704c57d61a42.json",
+					"name" : "pong_server",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "tcp_ping::@9a49f3a251900b31b886",
+					"jsonFile" : "target-tcp_ping-Debug-69a3fb18cce9ca43ec93.json",
+					"name" : "tcp_ping",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "udp_ping::@6833e652877ba234c695",
+					"jsonFile" : "target-udp_ping-Debug-f3fa4f7cc94c63655efb.json",
+					"name" : "udp_ping",
+					"projectIndex" : 4
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/parallels/Desktop/LAB SETI 16-04/SET/pingpong/cmake-build-debug",
+		"source" : "/home/parallels/Desktop/LAB SETI 16-04/SET/pingpong"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
