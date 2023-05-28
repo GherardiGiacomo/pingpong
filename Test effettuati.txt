@@ -1,0 +1,18 @@
+cd bin
+
+	./pong_server 1421
+	./tcp_ping localhost 1421 100
+	./udp_ping localhost 1421 100
+
+cd ../scripts/
+
+	./mkfile.bash 32 1024 1024 501 localhost 1421
+
+cd ../data/
+
+	make
+
+cd ../scripts/
+
+	./band_latency.bash tcp
+	./band_latency.bash udp
