@@ -16,6 +16,8 @@ cd bin
 
 * Misurazioni *
 
+** localhost **
+
 cd ../scripts/
 
 	./mkfile.bash 32 1024 1024 501 localhost 1421
@@ -23,6 +25,21 @@ cd ../scripts/
 cd ../data/
 
 	make
+
+cd ../scripts/
+
+	./band_latency.bash tcp
+	./band_latency.bash udp
+
+** seti.dibris.unige.it **
+
+cd ../scripts/
+
+		./mkfile.bash 32 1024 1024 501 seti.dibris.unige.it 1491
+
+cd ../data/
+
+		make
 
 cd ../scripts/
 

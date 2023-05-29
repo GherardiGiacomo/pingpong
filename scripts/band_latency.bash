@@ -18,14 +18,14 @@ minSample=($(head -n 1 ../data/${1}_throughput.dat))
 maxSample=($(tail -n 1 ../data/${1}_throughput.dat))
 
 # min dim
-minSampleDimBytes=$(sed -e 's/[eE]+*/\\*10\\^/' <<<${minSample[0]})   
+minSampleDimBytes=$(sed -e 's/[eE]+*/\\*10\\^/' <<<${minSample[0]})    #(printf "%.10f" ${String1[0]})
 # min throughput
-minThroughput=$(sed -e 's/[eE]+*/\\*10\\^/' <<<${minSample[2]}) 			 
+minThroughput=$(sed -e 's/[eE]+*/\\*10\\^/' <<<${minSample[2]}) 			 #(printf "%.10f" ${String1[2]})
 
 # max dim
-maxSampleDimBytes=$(sed -e 's/[eE]+*/\\*10\\^/' <<<${maxSample[0]})    
+maxSampleDimBytes=$(sed -e 's/[eE]+*/\\*10\\^/' <<<${maxSample[0]})    #(printf "%.10f" ${String1[0]})
 # max throughput
-maxThroughput=$(sed -e 's/[eE]+*/\\*10\\^/' <<<${maxSample[2]})  			 
+maxThroughput=$(sed -e 's/[eE]+*/\\*10\\^/' <<<${maxSample[2]})  			 #(printf "%.10f" ${String1[2]})
 
 # dim difference
 dimDiff=$(echo ${maxSampleDimBytes}-${minSampleDimBytes} | bc -l)
@@ -39,9 +39,6 @@ delayDiff=$(echo ${DelayMax}-${DelayMin} | bc -l)
 
 B=$(echo "scale=5; ${dimDiff}/${delayDiff}" | bc -l)
 L=$(echo "scale=9; ((-${minSampleDimBytes})/${B}+${DelayMin})/1" | bc -l)
-
-echo latenza: $L
-echo banda: $B
 
 # create folder if it doesn't exist
 if [ ! -d ../data/${1}_data ]; then
