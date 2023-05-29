@@ -122,6 +122,7 @@ int main(int argc, char **argv)
 
     /*** call getaddrinfo() in order to get Pong Server address in binary form ***/
 /*** TO BE DONE START ***/
+
     gai_rv = getaddrinfo(argv[1], argv[2],&gai_hints,&server_addrinfo);
 	if (gai_rv != 0)
 		fail ("Errore nella getaddrinfo");
@@ -200,4 +201,3 @@ if(strcmp(answer,"OK\n")!=0)
 	close(tcp_socket);
 	exit(EXIT_SUCCESS);
 }
-

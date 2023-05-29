@@ -1,8 +1,20 @@
+* Localhost *
+
 cd bin
 
 	./pong_server 1421
 	./tcp_ping localhost 1421 100
 	./udp_ping localhost 1421 100
+
+
+* Server seti.dibris.unige.it *
+
+cd bin 
+	/tcp_ping seti.dibris.unige.it 1491 100
+	/udp_ping seti.dibris.unige.it 1491 100
+
+
+* Misurazioni *
 
 cd ../scripts/
 
